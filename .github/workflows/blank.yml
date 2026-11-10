@@ -31,6 +31,8 @@ jobs:
       - name: Initialize Android Project Structure
         run: |
           flutter create . --project-name=ai_girlfriend --org=com.aigf --platforms=android
+          # Fix Kotlin version and SDK 35 compatibility
+          sed -i "s/ext.kotlin_version = .*/ext.kotlin_version = '1.9.22'/g" android/build.gradle || true
           sed -i 's/compileSdkVersion flutter.compileSdkVersion/compileSdkVersion 35/g' android/app/build.gradle
 
       - name: Install dependencies
